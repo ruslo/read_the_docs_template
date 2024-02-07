@@ -11,7 +11,7 @@ Read the Docs template
   :target: https://github.com/ruslo/read_the_docs_template/blob/master/license
   :alt: License
 
-.. |actions| image:: https://github.com/ruslo/read_the_docs_template/actions/workflows/sphinx/badge.svg
+.. |actions| image:: https://github.com/ruslo/read_the_docs_template/actions/workflows/sphinx.yml/badge.svg
   :target: https://github.com/ruslo/read_the_docs_template/actions/workflows/sphinx.yml
   :alt: GitHub Actions
 
