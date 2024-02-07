@@ -22,5 +22,14 @@ jobs:
       with:
         submodules: true
 
+    - name: Install Clang 17.0.6
+      run: |
+        wget https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+        tar xf ./clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+        rm ./clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+        mkdir -p "${HOME}/opt/"
+        mv clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04/ "${HOME}/opt/"
+        echo "${HOME}/opt/clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04/bin/" >> $GITHUB_PATH
+
     - name: Check format
       run: ./docs/check_format.py
