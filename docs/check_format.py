@@ -16,7 +16,11 @@ def run(args):
   """Print arguments and execute"""
   one_line = ' '.join(args)
   print(f'Executing: {one_line}')
-  result = subprocess.run(args, check=True, text=True, capture_output=True)
+  result = subprocess.run(args, text=True, check=False, capture_output=True)
+  if result.returncode != 0:
+    output = f'\n{result.stderr}\n{result.stdout}'
+    print(f'Exit with code {result.returncode}:{output}')
+    sys.exit(1)
   assert result.stderr == ''
   return result.stdout
 
