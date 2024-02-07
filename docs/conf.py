@@ -46,8 +46,12 @@ exclude_patterns = ['_build', '_venv', 'readme.rst', 'Thumbs.db', '.DS_Store']
 html_static_path = ['_static']
 
 # https://github.com/jbms/sphinx-immaterial
-extensions.append('sphinx_immaterial')
-html_theme = 'sphinx_immaterial'
+extensions.append('sphinx_rtd_theme')
+html_theme = 'sphinx_rtd_theme'
+
+extensions += [
+    "sphinx_tabs.tabs",
+]
 
 sphinx_immaterial_custom_admonitions = [
     {
@@ -70,7 +74,7 @@ sphinx_immaterial_custom_admonitions = [
     },
 ]
 
-html_theme_options = {
+html_theme_options_removed = {
     'icon': {
         'repo': 'fontawesome/brands/github',
         'edit': 'material/file-edit-outline',

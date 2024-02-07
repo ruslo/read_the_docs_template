@@ -1,37 +1,36 @@
 Code block
 ==========
 
-.. md-tab-set::
+.. tabs::
 
-   .. md-tab-item:: Tab 1
+   .. tab:: Tab 1
 
      .. code-block:: cpp
 
        #include <iostream>
        int main() { std::cout << "Hello, Tab 1" << std::endl; }
 
-   .. md-tab-item:: Tab 2
+   .. tab:: Tab 2
 
      .. code-block:: cpp
 
        #include <iostream>
        int main() { std::cout << "Hello, Tab 2" << std::endl; }
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :linenos:
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :emphasize-lines: 3
     :linenos:
 
-.. example:: `main.cpp`
-  :collapsible:
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
@@ -41,21 +40,21 @@ Code block
 Example 1
 ---------
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :emphasize-lines: 3
     :linenos:
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :emphasize-lines: 3
     :linenos:
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
@@ -65,21 +64,21 @@ Example 1
 Example 2
 ---------
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :emphasize-lines: 3
     :linenos:
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :emphasize-lines: 3
     :linenos:
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
@@ -89,21 +88,21 @@ Example 2
 Example 3
 ---------
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :emphasize-lines: 3
     :linenos:
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp
     :emphasize-lines: 3
     :linenos:
 
-.. example:: `main.cpp`
+.. seealso:: `main.cpp`
 
   .. literalinclude:: /code_samples/main.cpp
     :language: cpp

@@ -12,3 +12,5 @@ sphinx-immaterial==0.11.10
 
 # https://packaging.pypa.io
 packaging
+
+sphinx_tabs
