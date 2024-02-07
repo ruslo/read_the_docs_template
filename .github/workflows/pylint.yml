@@ -1,0 +1,44 @@
+name: Pylint
+
+on:
+  push:
+    branches-ignore:
+    - 'wip.*'
+    - 'pr.*'
+    tags:
+    - '*'
+  pull_request:
+    branches:
+    - '*'
+
+jobs:
+  build:
+    # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+    runs-on: ubuntu-22.04
+
+    steps:
+    # - https://github.com/actions/checkout
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Install pylint
+      run: sudo apt -y install pylint
+
+    - name: Check setup_venv.py
+      run: pylint --rcfile=docs/.pylintrc docs/setup_venv.py
+
+    - name: Check run_build.py
+      run: pylint --rcfile=docs/.pylintrc docs/run_build.py
+
+    - name: Check run_clean.py
+      run: pylint --rcfile=docs/.pylintrc docs/run_clean.py
+
+    - name: Check make_release.py
+      run: pylint --rcfile=docs/.pylintrc docs/make_release.py
+
+    - name: Check check_format.py
+      run: pylint --rcfile=docs/.pylintrc docs/check_format.py
+
+    - name: Check conf.py
+      run: pylint --rcfile=docs/.pylintrc --const-naming-style=snake_case docs/conf.py

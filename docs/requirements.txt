@@ -1,0 +1,14 @@
+# https://github.com/sphinx-doc/sphinx
+Sphinx==7.2.6
+
+# https://github.com/readthedocs/sphinx_rtd_theme
+sphinx-rtd-theme==2.0.0
+
+# https://github.com/sphinx-contrib/spelling
+sphinxcontrib-spelling==8.0.0
+
+# https://github.com/jbms/sphinx-immaterial
+sphinx-immaterial==0.11.10
+
+# https://packaging.pypa.io
+packaging

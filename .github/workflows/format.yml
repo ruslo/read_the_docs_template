@@ -1,0 +1,26 @@
+name: ClangFormat
+
+on:
+  push:
+    branches-ignore:
+    - 'wip.*'
+    - 'pr.*'
+    tags:
+    - '*'
+  pull_request:
+    branches:
+    - '*'
+
+jobs:
+  build:
+    # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+    runs-on: ubuntu-22.04
+
+    steps:
+    # - https://github.com/actions/checkout
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Check format
+      run: ./check_format.sh
