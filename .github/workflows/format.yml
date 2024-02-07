@@ -23,4 +23,4 @@ jobs:
         submodules: true
 
     - name: Check format
-      run: ./check_format.sh
+      run: ./docs/check_format.py
