@@ -1,7 +1,7 @@
 Highlight text
 --------------
 
-You should press :kbd:`Ctrl+F` or :kbd:`Configure`.
+You should press :keys:`Ctrl+F` or :keys:`Configure`.
 
 - Highlight text *like this*
 - Highlight text **like this**

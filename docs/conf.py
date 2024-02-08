@@ -31,6 +31,8 @@ version = f'{version.major}.{version.minor}'
 
 extensions = []
 
+extensions.append('sphinx_immaterial.kbd_keys')
+
 if not on_rtd:
   extensions.append('sphinxcontrib.spelling')
   spelling_show_suggestions = True
