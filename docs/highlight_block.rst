@@ -29,6 +29,30 @@ Highlight block
 
   Text
 
+.. deprecated:: 3.0
+
+  Text
+
+.. admonition:: Bug
+  :class: bug
+
+  Text
+
+.. admonition:: Quote
+  :class: quote
+
+  Text
+
+.. tip::
+  :title: A custom tip title
+
+  Text
+
+.. success::
+  :no-title:
+
+  Text
+
 Custom
 ======
 
