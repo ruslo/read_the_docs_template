@@ -19,7 +19,7 @@ def run_main():
   parser = ArgumentParser(description=__doc__)
   parser.parse_args()
 
-  to_clean = ['_build', '_static', '_spelling']
+  to_clean = ['_build', '_spelling']
   for i in to_clean:
     d_abs = script_dir / i
     if not d_abs.exists():
