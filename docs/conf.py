@@ -47,6 +47,9 @@ exclude_patterns = ['_build', '_venv', 'readme.rst', 'Thumbs.db', '.DS_Store']
 
 html_static_path = ['_static']
 
+# https://github.com/jbms/sphinx-immaterial/issues/322
+html_css_files = [ 'kbd_background.css' ]
+
 # https://github.com/jbms/sphinx-immaterial
 extensions.append('sphinx_immaterial')
 html_theme = 'sphinx_immaterial'
