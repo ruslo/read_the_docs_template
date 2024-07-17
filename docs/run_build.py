@@ -3,6 +3,7 @@
 """Build documentation"""
 
 import subprocess
+import sys
 import time
 
 from argparse import ArgumentParser
@@ -36,7 +37,12 @@ def run_main():
   assert venv_python.exists()
   print(f'Python executable: {venv_python}')
 
-  sphinx_build = venv_python.parent / 'sphinx-build'
+  if sys.platform == 'win32':
+    exe_suffix = '.exe'
+  else:
+    exe_suffix = ''
+
+  sphinx_build = venv_python.parent / f'sphinx-build{exe_suffix}'
   print(f'Sphinx build executable: {sphinx_build}')
   assert sphinx_build.exists()
 
