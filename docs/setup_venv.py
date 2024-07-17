@@ -46,7 +46,8 @@ def run_main():
   assert requirements.exists()
 
   print('Install required packages')
-  run([str(venv_python), '-m', 'pip', 'install', '-r', str(requirements)])
+  run([str(venv_python), '-m', 'pip', 'install',
+      '--retries', '10', '--requirement', str(requirements)])
 
 if __name__ == '__main__':
   start = time.time()
