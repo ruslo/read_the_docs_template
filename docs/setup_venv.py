@@ -8,12 +8,27 @@ import time
 from argparse import ArgumentParser
 from pathlib import Path
 from venv import EnvBuilder
+from tenacity import retry, retry_if_exception_type, stop_after_attempt
+from tenacity import wait_random_exponential
+
+import urllib3
 
 def run(args):
   """Print arguments and execute"""
   one_line = ' '.join(args)
   print(f'Executing: {one_line}')
   subprocess.run(args, check=True)
+
+# Workaround for missing exponential backoff
+# - https://stackoverflow.com/a/60781298
+@retry(retry=retry_if_exception_type(urllib3.exceptions.ReadTimeoutError),
+    stop=stop_after_attempt(10),
+    wait=wait_random_exponential(multiplier=1, max=60))
+def pip_install(venv_python, requirements):
+  """Run pip install"""
+  print('Install required packages')
+  run([str(venv_python), '-m', 'pip', 'install',
+      '--requirement', str(requirements)])
 
 def run_main():
   """Wrapper for main"""
@@ -45,9 +60,7 @@ def run_main():
   requirements = script_dir / 'requirements.txt'
   assert requirements.exists()
 
-  print('Install required packages')
-  run([str(venv_python), '-m', 'pip', 'install',
-      '--retries', '10', '--requirement', str(requirements)])
+  pip_install(venv_python, requirements)
 
 if __name__ == '__main__':
   start = time.time()
