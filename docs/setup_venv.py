@@ -3,15 +3,15 @@
 """Setup virtual environment"""
 
 import subprocess
+import sys
 import time
 
 from argparse import ArgumentParser
 from pathlib import Path
 from venv import EnvBuilder
-from tenacity import retry, retry_if_exception_type, stop_after_attempt
-from tenacity import wait_random_exponential
 
-import urllib3
+# Avoid using non-standard modules here since the script itself should be used
+# to install dependencies
 
 def run(args):
   """Print arguments and execute"""
@@ -19,16 +19,29 @@ def run(args):
   print(f'Executing: {one_line}')
   subprocess.run(args, check=True)
 
-# Workaround for missing exponential backoff
-# - https://stackoverflow.com/a/60781298
-@retry(retry=retry_if_exception_type(urllib3.exceptions.ReadTimeoutError),
-    stop=stop_after_attempt(10),
-    wait=wait_random_exponential(multiplier=1, max=60))
 def pip_install(venv_python, requirements):
   """Run pip install"""
   print('Install required packages')
-  run([str(venv_python), '-m', 'pip', 'install',
-      '--requirement', str(requirements)])
+
+  # Workaround for missing exponential backoff
+  # - https://stackoverflow.com/a/60781298
+  n_attempts = 10
+  wait_time = 1
+  multiplier = 2
+  max_wait_time = 60
+
+  for i in range(n_attempts):
+    try:
+      if i != 0:
+        print(f'Retry {i}/{n_attempts}')
+      run([str(venv_python), '-m', 'pip', 'install',
+          '--requirement', str(requirements)])
+      return
+    except subprocess.CalledProcessError as exc:
+      print(f'Exception caught, waiting {wait_time} seconds: {exc}')
+      time.sleep(wait_time)
+      wait_time = min(wait_time * multiplier, max_wait_time)
+  sys.exit('Failed')
 
 def run_main():
   """Wrapper for main"""

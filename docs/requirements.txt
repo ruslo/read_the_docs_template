@@ -13,6 +13,3 @@ sphinx-immaterial[keys]==0.12.1
 
 # https://packaging.pypa.io
 packaging
-
-# https://github.com/jd/tenacity
-tenacity
