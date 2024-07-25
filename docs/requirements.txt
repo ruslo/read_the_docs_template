@@ -1,5 +1,5 @@
 # https://github.com/sphinx-doc/sphinx
-Sphinx==7.3.7
+Sphinx==7.4.7
 
 # https://github.com/readthedocs/sphinx_rtd_theme
 sphinx-rtd-theme==2.0.0
