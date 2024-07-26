@@ -48,7 +48,7 @@ def run_main():
 
   print('Build documentation')
   build_dir = script_dir / '_build'
-  static_dir = script_dir / '_static'
+  static_dir = script_dir / 'static'
   static_dir.mkdir(exist_ok=True)
   run([str(sphinx_build),
       '-v', # verbose

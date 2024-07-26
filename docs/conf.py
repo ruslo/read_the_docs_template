@@ -38,14 +38,14 @@ if not on_rtd:
   spelling_show_suggestions = True
   spelling_word_list_filename = 'spelling.txt'
 
-templates_path = ['_templates']
+templates_path = ['templates']
 
 exclude_patterns = ['_build', '_venv', 'readme.rst', 'Thumbs.db', '.DS_Store']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_static_path = ['_static']
+html_static_path = ['static']
 
 # https://github.com/jbms/sphinx-immaterial/issues/322
 html_css_files = [ 'kbd_background.css' ]
