@@ -9,7 +9,7 @@ sphinxcontrib-spelling==8.0.0
 
 # https://github.com/jbms/sphinx-immaterial
 # https://jbms.github.io/sphinx-immaterial/keys.html#keys-extension-role
-sphinx-immaterial[keys]==0.12.1
+sphinx-immaterial[keys]==0.12.2
 
 # https://packaging.pypa.io
 packaging
