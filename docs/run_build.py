@@ -25,24 +25,32 @@ def run_main():
   assert script_dir.is_dir()
 
   parser = ArgumentParser(description=__doc__)
-  parser.parse_args()
+  parser.add_argument('--novenv', action='store_true',
+      help='Do not create local virtualenv')
+  args = parser.parse_args()
 
-  venv_dir = script_dir / '_venv'
-  print(f'venv directory: {venv_dir}')
-  assert venv_dir.is_dir()
-  venv_builder = EnvBuilder()
-  context = venv_builder.ensure_directories(venv_dir)
+  novenv = args.novenv
+  assert not novenv is None
 
-  venv_python = Path(context.env_exec_cmd)
-  assert venv_python.exists()
-  print(f'Python executable: {venv_python}')
+  if novenv:
+    python_path = Path(sys.executable)
+  else:
+    venv_dir = script_dir / '_venv'
+    print(f'venv directory: {venv_dir}')
+    assert venv_dir.is_dir()
+    venv_builder = EnvBuilder()
+    context = venv_builder.ensure_directories(venv_dir)
+    python_path = Path(context.env_exec_cmd)
+
+  assert python_path.exists()
+  print(f'Python executable: {python_path}')
 
   if sys.platform == 'win32':
     exe_suffix = '.exe'
   else:
     exe_suffix = ''
 
-  sphinx_build = venv_python.parent / f'sphinx-build{exe_suffix}'
+  sphinx_build = python_path.parent / f'sphinx-build{exe_suffix}'
   print(f'Sphinx build executable: {sphinx_build}')
   assert sphinx_build.exists()
 
