@@ -1,15 +1,12 @@
 # https://github.com/sphinx-doc/sphinx
-Sphinx==7.4.7
-
-# https://github.com/readthedocs/sphinx_rtd_theme
-sphinx-rtd-theme==2.0.0
+Sphinx==8.2.3
 
 # https://github.com/sphinx-contrib/spelling
 sphinxcontrib-spelling==8.0.0
 
 # https://github.com/jbms/sphinx-immaterial
 # https://jbms.github.io/sphinx-immaterial/keys.html#keys-extension-role
-sphinx-immaterial[keys]==0.12.2
+sphinx-immaterial[keys]==0.13.7
 
 # https://packaging.pypa.io
 packaging

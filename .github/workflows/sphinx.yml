@@ -22,8 +22,11 @@ jobs:
       with:
         submodules: true
 
+    - name: Setup Python 3.11
+      run: sudo apt --yes install python3.11 python3.11-venv
+
     - name: Setup Python virtual environment
-      run: ./docs/setup_venv.py
+      run: python3.11 ./docs/setup_venv.py
 
     - name: Build Sphinx documentation
-      run: ./docs/run_build.py
+      run: python3.11 ./docs/run_build.py

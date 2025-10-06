@@ -15,7 +15,7 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 project = 'Read the Docs template'
 author = 'Ruslan Baratov'
-project_copyright = f'2024, {author}'
+project_copyright = f'2025, {author}'
 
 github_url = 'https://github.com/ruslo/read_the_docs_template'
 
@@ -87,11 +87,17 @@ html_theme_options = {
         'navigation.expand',
         'navigation.sections',
         'navigation.top',
+        'navigation.footer',
         'search.highlight',
         'search.share',
+        'search.suggest',
         'toc.follow',
         'toc.sticky',
+        'content.code.copy',
         'content.tabs.link',
+        'content.action.edit',
+        'content.action.view',
+        'content.tooltips',
         'announce.dismiss',
     ],
     'palette': [
