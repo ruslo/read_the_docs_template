@@ -13,8 +13,8 @@ on:
 
 jobs:
   build:
-    # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
-    runs-on: ubuntu-22.04
+    # https://docs.github.com/en/actions/reference/runners/github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+    runs-on: ubuntu-24.04
 
     steps:
     # - https://github.com/actions/checkout
@@ -22,11 +22,8 @@ jobs:
       with:
         submodules: true
 
-    - name: Setup Python 3.11
-      run: sudo apt --yes install python3.11 python3.11-venv
-
     - name: Setup Python virtual environment
-      run: python3.11 ./doc/setup_venv.py
+      run: python3 ./doc/setup_venv.py
 
     - name: Build Sphinx documentation
-      run: python3.11 ./doc/run_build.py
+      run: python3 ./doc/run_build.py

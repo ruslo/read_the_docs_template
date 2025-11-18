@@ -13,8 +13,8 @@ on:
 
 jobs:
   build:
-    # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
-    runs-on: ubuntu-22.04
+    # https://docs.github.com/en/actions/reference/runners/github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+    runs-on: ubuntu-24.04
 
     steps:
     # - https://github.com/actions/checkout
@@ -22,14 +22,14 @@ jobs:
       with:
         submodules: true
 
-    - name: Install Clang 17.0.6
+    - name: Install LLVM 21.1.5
       run: |
-        wget https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
-        tar xf ./clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
-        rm ./clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+        wget https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.5/LLVM-21.1.5-Linux-X64.tar.xz
+        tar xf ./LLVM-21.1.5-Linux-X64.tar.xz
+        rm ./LLVM-21.1.5-Linux-X64.tar.xz
         mkdir -p "${HOME}/opt/"
-        mv clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04/ "${HOME}/opt/"
-        echo "${HOME}/opt/clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04/bin/" >> $GITHUB_PATH
+        mv ./LLVM-21.1.5-Linux-X64/ "${HOME}/opt/"
+        echo "${HOME}/opt/LLVM-21.1.5-Linux-X64/bin/" >> $GITHUB_PATH
 
     - name: Check format
       run: ./doc/check_format.py
