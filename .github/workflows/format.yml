@@ -32,4 +32,4 @@ jobs:
         echo "${HOME}/opt/clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04/bin/" >> $GITHUB_PATH
 
     - name: Check format
-      run: ./docs/check_format.py
+      run: ./doc/check_format.py

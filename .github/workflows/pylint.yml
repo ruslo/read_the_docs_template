@@ -26,19 +26,19 @@ jobs:
       run: sudo apt -y install pylint
 
     - name: Check setup_venv.py
-      run: pylint --rcfile=docs/.pylintrc docs/setup_venv.py
+      run: pylint --rcfile=doc/.pylintrc doc/setup_venv.py
 
     - name: Check run_build.py
-      run: pylint --rcfile=docs/.pylintrc docs/run_build.py
+      run: pylint --rcfile=doc/.pylintrc doc/run_build.py
 
     - name: Check run_clean.py
-      run: pylint --rcfile=docs/.pylintrc docs/run_clean.py
+      run: pylint --rcfile=doc/.pylintrc doc/run_clean.py
 
     - name: Check make_release.py
-      run: pylint --rcfile=docs/.pylintrc docs/make_release.py
+      run: pylint --rcfile=doc/.pylintrc doc/make_release.py
 
     - name: Check check_format.py
-      run: pylint --rcfile=docs/.pylintrc docs/check_format.py
+      run: pylint --rcfile=doc/.pylintrc doc/check_format.py
 
     - name: Check conf.py
-      run: pylint --rcfile=docs/.pylintrc --const-naming-style=snake_case docs/conf.py
+      run: pylint --rcfile=doc/.pylintrc --const-naming-style=snake_case doc/conf.py

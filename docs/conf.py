@@ -81,7 +81,7 @@ html_theme_options = {
         'edit': 'material/file-edit-outline',
     },
     'repo_url': github_url,
-    'edit_uri': 'blob/master/docs',
+    'edit_uri': 'blob/master/doc',
     'globaltoc_collapse': True,
     'features': [
         'navigation.expand',

@@ -1,9 +1,9 @@
 Read the Docs template
 ----------------------
 
-|docs| |actions| |license|
+|doc| |actions| |license|
 
-.. |docs| image:: https://readthedocs.org/projects/read-the-docs-template-cdkwuttv/badge/?version=latest
+.. |doc| image:: https://readthedocs.org/projects/read-the-docs-template-cdkwuttv/badge/?version=latest
   :target: http://read-the-docs-template-cdkwuttv.readthedocs.io/en/latest/?badge=latest
   :alt: Read the Docs
 
