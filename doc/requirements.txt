@@ -10,3 +10,6 @@ sphinx-immaterial[keys]==0.13.8
 
 # https://packaging.pypa.io
 packaging
+
+# https://github.com/pylint-dev/pylint
+pylint==4.0.3

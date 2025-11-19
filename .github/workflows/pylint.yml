@@ -22,8 +22,10 @@ jobs:
       with:
         submodules: true
 
-    - name: Install pylint
-      run: sudo apt -y install pylint
+    - name: Setup Python virtual environment for Pylint
+      run: |
+        python3 ./doc/setup_venv.py
+        echo "${PWD}/doc/_venv/bin/" >> $GITHUB_PATH
 
     - name: Check setup_venv.py
       run: pylint --rcfile=doc/.pylintrc doc/setup_venv.py
