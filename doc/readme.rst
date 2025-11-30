@@ -13,3 +13,15 @@ Required system packages:
   $ apt -y install python3-venv
   $ apt -y install python3-enchant
   $ apt -y install git
+
+Pylint
+------
+
+.. code-block:: none
+
+  $ pylint setup_venv.py
+  $ pylint run_build.py
+  $ pylint run_clean.py
+  $ pylint make_release.py
+  $ pylint check_format.py
+  $ pylint --const-naming-style=snake_case conf.py
