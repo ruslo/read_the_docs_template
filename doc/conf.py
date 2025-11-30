@@ -50,6 +50,9 @@ html_static_path = ['static']
 # https://github.com/jbms/sphinx-immaterial/issues/322
 html_css_files = [ 'kbd_background.css' ]
 
+# "Last update" time for each page
+html_last_updated_fmt = ''
+
 # https://github.com/jbms/sphinx-immaterial
 extensions.append('sphinx_immaterial')
 html_theme = 'sphinx_immaterial'
