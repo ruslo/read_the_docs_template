@@ -2,7 +2,7 @@
 Sphinx==8.2.3
 
 # https://github.com/sphinx-contrib/spelling
-sphinxcontrib-spelling==8.0.0
+sphinxcontrib-spelling==8.0.2
 
 # https://github.com/jbms/sphinx-immaterial
 # https://jbms.github.io/sphinx-immaterial/keys.html#keys-extension-role
