@@ -1,5 +1,5 @@
 # https://github.com/sphinx-doc/sphinx
-Sphinx==8.2.3
+Sphinx==9.0.1
 
 # https://github.com/sphinx-contrib/spelling
 sphinxcontrib-spelling==8.0.2
