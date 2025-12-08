@@ -25,3 +25,11 @@ Pylint
   $ pylint make_release.py
   $ pylint check_format.py
   $ pylint --const-naming-style=snake_case conf.py
+
+Sphinx Lint
+-----------
+
+.. code-block:: none
+
+  $ ./_venv/bin/sphinx-lint --ignore _venv .
+

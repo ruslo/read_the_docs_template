@@ -44,3 +44,6 @@ jobs:
 
     - name: Check conf.py
       run: pylint --rcfile=doc/.pylintrc --const-naming-style=snake_case doc/conf.py
+
+    - name: Run Sphinx Lint
+      run: sphinx-lint --ignore doc/_venv doc/

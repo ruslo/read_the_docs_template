@@ -13,3 +13,6 @@ packaging
 
 # https://github.com/pylint-dev/pylint
 pylint==4.0.4
+
+# https://github.com/sphinx-contrib/sphinx-lint
+sphinx-lint==1.0.2
