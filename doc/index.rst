@@ -7,3 +7,4 @@
  /code_block
  /highlight_text
  /highlight_block
+ /mermaid_diagram
