@@ -12,7 +12,7 @@ sphinx-immaterial[keys]==0.13.9
 packaging
 
 # https://github.com/pylint-dev/pylint
-pylint==4.0.5
+pylint==4.0.6
 
 # https://github.com/sphinx-contrib/sphinx-lint
 sphinx-lint==1.0.2
