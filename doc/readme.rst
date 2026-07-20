@@ -17,6 +17,8 @@ Required system packages:
 Pylint
 ------
 
+Configuration is in ``pyproject.toml``
+
 .. code-block:: none
 
   $ pylint setup_venv.py
@@ -24,12 +26,20 @@ Pylint
   $ pylint run_clean.py
   $ pylint make_release.py
   $ pylint check_format.py
-  $ pylint --const-naming-style=snake_case conf.py
+  $ pylint --const-naming-style=snake_case --allow-global-unused-variables=yes conf.py
+
+Ruff
+----
+
+Configuration is in ``pyproject.toml``
+
+.. code-block:: none
+
+  $ ruff check --show-files .
 
 Sphinx Lint
 -----------
 
 .. code-block:: none
 
-  $ ./_venv/bin/sphinx-lint --ignore _venv .
-
+  $ sphinx-lint --ignore _venv/ .

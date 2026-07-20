@@ -70,9 +70,9 @@ def run_main():
   assert script_dir.is_dir()
 
   apply, force, arg_apply_hints = parse_args()
-  assert not apply is None
-  assert not force is None
-  assert not arg_apply_hints is None
+  assert apply is not None
+  assert force is not None
+  assert arg_apply_hints is not None
   assert arg_apply_hints != ''
 
   check_configuration(script_dir)

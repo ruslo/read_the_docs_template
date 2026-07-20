@@ -22,28 +22,31 @@ jobs:
       with:
         submodules: true
 
-    - name: Setup Python virtual environment for Pylint
+    - name: Setup Python virtual environment for linting
       run: |
         python3 ./doc/setup_venv.py
         echo "${PWD}/doc/_venv/bin/" >> $GITHUB_PATH
 
     - name: Check setup_venv.py
-      run: pylint --rcfile=doc/.pylintrc doc/setup_venv.py
+      run: pylint --rcfile=doc/pyproject.toml doc/setup_venv.py
 
     - name: Check run_build.py
-      run: pylint --rcfile=doc/.pylintrc doc/run_build.py
+      run: pylint --rcfile=doc/pyproject.toml doc/run_build.py
 
     - name: Check run_clean.py
-      run: pylint --rcfile=doc/.pylintrc doc/run_clean.py
+      run: pylint --rcfile=doc/pyproject.toml doc/run_clean.py
 
     - name: Check make_release.py
-      run: pylint --rcfile=doc/.pylintrc doc/make_release.py
+      run: pylint --rcfile=doc/pyproject.toml doc/make_release.py
 
     - name: Check check_format.py
-      run: pylint --rcfile=doc/.pylintrc doc/check_format.py
+      run: pylint --rcfile=doc/pyproject.toml doc/check_format.py
 
     - name: Check conf.py
-      run: pylint --rcfile=doc/.pylintrc --const-naming-style=snake_case doc/conf.py
+      run: pylint --rcfile=doc/pyproject.toml --const-naming-style=snake_case --allow-global-unused-variables=yes doc/conf.py
+
+    - name: Run Ruff
+      run: ruff check --config doc/pyproject.toml --show-files doc/
 
     - name: Run Sphinx Lint
       run: sphinx-lint --ignore doc/_venv doc/
