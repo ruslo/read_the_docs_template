@@ -72,12 +72,12 @@ def run_main():
 
   print(f'Current working directory: {Path.cwd()}')
   version = args.v
-  assert not version is None
+  assert version is not None
   git_tag = f'v{version}'
   print(f'Creating release {version} with Git tag {git_tag}')
 
   gpg_sign = args.S
-  assert not gpg_sign is None
+  assert gpg_sign is not None
   print(f'Use GPG sign? {gpg_sign}')
 
   check_clean()

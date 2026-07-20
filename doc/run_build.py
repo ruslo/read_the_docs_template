@@ -30,7 +30,7 @@ def run_main():
   args = parser.parse_args()
 
   novenv = args.novenv
-  assert not novenv is None
+  assert novenv is not None
 
   if novenv:
     python_path = Path(sys.executable)
