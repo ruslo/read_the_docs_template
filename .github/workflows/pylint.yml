@@ -22,6 +22,11 @@ jobs:
       with:
         submodules: true
 
+    - name: Install uv
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
     - name: Setup Python virtual environment for linting
       run: |
         python3 ./doc/setup_venv.py

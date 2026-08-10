@@ -10,7 +10,7 @@ Required system packages:
 
 .. code-block:: none
 
-  $ apt -y install python3-venv
+  $ curl -LsSf https://astral.sh/uv/install.sh | sh
   $ apt -y install python3-enchant
   $ apt -y install git
 

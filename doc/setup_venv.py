@@ -2,13 +2,13 @@
 
 """Setup virtual environment"""
 
+import shutil
 import subprocess
 import sys
 import time
 
 from argparse import ArgumentParser
 from pathlib import Path
-from venv import EnvBuilder
 
 # Avoid using non-standard modules here since the script itself should be used
 # to install dependencies
@@ -19,8 +19,18 @@ def run(args):
   print(f'Executing: {one_line}')
   subprocess.run(args, check=True)
 
-def pip_install(venv_python, requirements):
-  """Run pip install"""
+def find_uv():
+  """Find uv executable"""
+  uv = shutil.which('uv')
+  if uv is not None:
+    return Path(uv)
+  sys.exit(
+      'uv is not installed. See '
+      'https://docs.astral.sh/uv/getting-started/installation/'
+  )
+
+def uv_pip_install(uv, venv_dir, requirements):
+  """Run uv pip install"""
   print('Install required packages')
 
   # Workaround for missing exponential backoff
@@ -34,7 +44,7 @@ def pip_install(venv_python, requirements):
     try:
       if i != 0:
         print(f'Retry {i}/{n_attempts}')
-      run([str(venv_python), '-m', 'pip', 'install',
+      run([str(uv), 'pip', 'install', '--python', str(venv_dir),
           '--requirement', str(requirements)])
       return
     except subprocess.CalledProcessError as exc:
@@ -54,26 +64,22 @@ def run_main():
   parser = ArgumentParser(description=__doc__)
   parser.parse_args()
 
+  uv = find_uv()
+  print(f'uv executable: {uv}')
+  assert uv.exists()
+
   venv_dir = script_dir / '_venv'
   print(f'venv directory: {venv_dir}')
-  venv_builder = EnvBuilder()
-  venv_builder.create(venv_dir)
-  context = venv_builder.ensure_directories(venv_dir)
 
-  venv_python = Path(context.env_exec_cmd)
-  assert venv_python.exists()
-  print(f'Python executable: {venv_python}')
-
-  print('Ensure pip')
-  run([str(venv_python), '-m', 'ensurepip', '--upgrade'])
-
-  print('Upgrade pip')
-  run([str(venv_python), '-m', 'pip', 'install', '-U', 'pip'])
+  print('Create virtual environment')
+  run([str(uv), 'venv', '--allow-existing', '--python', sys.executable,
+      str(venv_dir)])
+  assert venv_dir.is_dir()
 
   requirements = script_dir / 'requirements.txt'
   assert requirements.exists()
 
-  pip_install(venv_python, requirements)
+  uv_pip_install(uv, venv_dir, requirements)
 
 if __name__ == '__main__':
   start = time.time()
