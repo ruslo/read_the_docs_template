@@ -4,6 +4,7 @@
 
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -18,6 +19,16 @@ def run(args):
   res = subprocess.run(args, check=True, text=True, capture_output=True)
   assert res.stderr == ''
   return res.stdout.splitlines()
+
+def find_uv():
+  """Find uv executable"""
+  uv = shutil.which('uv')
+  if uv is not None:
+    return Path(uv)
+  sys.exit(
+      'uv is not installed. See '
+      'https://docs.astral.sh/uv/getting-started/installation/'
+  )
 
 def check_clean():
   """Check the current Git repository is clean"""
@@ -114,7 +125,15 @@ def run_main():
   pyproject_toml = pyproject_toml.absolute()
   patch_pyproject_toml(pyproject_toml, version)
 
-  run(['git', 'add', str(conf_py), str(pyproject_toml)])
+  uv = find_uv()
+  print(f'uv executable: {uv}')
+  assert uv.exists()
+
+  uv_lock = Path('uv.lock')
+  print(f'Update {uv_lock} file')
+  run([str(uv), 'sync', '--quiet'])
+
+  run(['git', 'add', str(conf_py), str(pyproject_toml), str(uv_lock)])
 
   message = f'Release {version}'
 
