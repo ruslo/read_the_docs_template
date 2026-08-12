@@ -19,4 +19,6 @@ formats:
 
 python:
   install:
-    - requirements: doc/requirements.txt
+    - method: uv
+      path: doc
+      command: sync
