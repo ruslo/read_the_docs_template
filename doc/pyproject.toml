@@ -558,8 +558,6 @@ ignored-argument-names = "_.*|^ignored_|^unused_"
 # builtins.
 redefining-builtins-modules = ["six.moves", "past.builtins", "future.builtins", "builtins", "io"]
 
-
-
 # https://docs.astral.sh/ruff/configuration/
 [tool.ruff]
 line-length = 79
@@ -579,3 +577,35 @@ exclude = [
 indent-style = "space"
 quote-style = "single"
 docstring-code-format = false
+
+[tool.uv]
+package = false
+
+[project]
+name = "read_the_docs_template"
+version = "1.0.2"
+requires-python = ">=3.12"
+
+dependencies = [
+  # https://github.com/sphinx-doc/sphinx
+  "Sphinx==9.1.0",
+
+  # https://github.com/sphinx-contrib/spelling
+  "sphinxcontrib-spelling==8.0.2",
+
+  # https://github.com/jbms/sphinx-immaterial
+  # https://jbms.github.io/sphinx-immaterial/keys.html#keys-extension-role
+  "sphinx-immaterial[keys]==0.13.9",
+
+  # https://packaging.pypa.io
+  "packaging",
+
+  # https://github.com/pylint-dev/pylint
+  "pylint==4.0.6",
+
+  # https://github.com/astral-sh/ruff
+  "ruff==0.16.2",
+
+  # https://github.com/sphinx-contrib/sphinx-lint
+  "sphinx-lint==1.0.2"
+]

@@ -53,6 +53,30 @@ def patch_conf_py(conf_py, version):
     for i in new_lines:
       file.write(i)
 
+def patch_pyproject_toml(pyproject_toml, version):
+  """Set new version to pyproject.toml"""
+  print(f'Patching project file: {pyproject_toml}')
+
+  new_lines = []
+
+  with open(pyproject_toml, 'r', encoding='utf-8') as file:
+    lines = file.readlines()
+    match_found = False
+    for i in lines:
+      if re.match(r'version\s*=', i) is None:
+        new_lines.append(i)
+      else:
+        assert not match_found
+        match_found = True
+        new_version = f'version = "{version}"\n'
+        assert i != new_version
+        new_lines.append(new_version)
+    assert match_found
+
+  with open(pyproject_toml, 'w', encoding='utf-8') as file:
+    for i in new_lines:
+      file.write(i)
+
 def run_main():
   """Wrapper for main"""
   this_script = Path(__file__)
@@ -86,7 +110,11 @@ def run_main():
   conf_py = conf_py.absolute()
   patch_conf_py(conf_py, version)
 
-  run(['git', 'add', str(conf_py)])
+  pyproject_toml = Path('pyproject.toml')
+  pyproject_toml = pyproject_toml.absolute()
+  patch_pyproject_toml(pyproject_toml, version)
+
+  run(['git', 'add', str(conf_py), str(pyproject_toml)])
 
   message = f'Release {version}'
 

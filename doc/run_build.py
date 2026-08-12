@@ -2,19 +2,37 @@
 
 """Build documentation"""
 
+import os
+import shutil
 import subprocess
 import sys
 import time
 
 from argparse import ArgumentParser
 from pathlib import Path
-from venv import EnvBuilder
 
 def run(args):
   """Print arguments and execute"""
   one_line = ' '.join(args)
   print(f'Executing: {one_line}')
   subprocess.run(args, check=True)
+
+def find_uv():
+  """Find uv executable"""
+  uv = shutil.which('uv')
+  if uv is not None:
+    return Path(uv)
+  sys.exit(
+      'uv is not installed. See '
+      'https://docs.astral.sh/uv/getting-started/installation/'
+  )
+
+def do_clean(clean: bool, directory: Path):
+  """Perform optional clean-up"""
+  if clean and directory.exists():
+    print(f'Removing directory: {directory}')
+    shutil.rmtree(directory)
+    assert not directory.exists()
 
 def run_main():
   """Wrapper for main"""
@@ -24,48 +42,38 @@ def run_main():
   script_dir = this_script.parent
   assert script_dir.is_dir()
 
+  os.chdir(script_dir)
+  print(f'Working directory: {Path.cwd()}')
+
   parser = ArgumentParser(description=__doc__)
-  parser.add_argument('--novenv', action='store_true',
-      help='Do not create local virtualenv')
+  parser.add_argument('--clean', action='store_true',
+      help='Clean temporary files before build')
   args = parser.parse_args()
 
-  novenv = args.novenv
-  assert novenv is not None
+  clean = args.clean
+  assert clean is not None
 
-  if novenv:
-    python_path = Path(sys.executable)
-  else:
-    venv_dir = script_dir / '_venv'
-    print(f'venv directory: {venv_dir}')
-    assert venv_dir.is_dir()
-    venv_builder = EnvBuilder()
-    context = venv_builder.ensure_directories(venv_dir)
-    python_path = Path(context.env_exec_cmd)
+  uv = find_uv()
+  print(f'uv executable: {uv}')
+  assert uv.exists()
 
-  assert python_path.exists()
-  print(f'Python executable: {python_path}')
-
-  if sys.platform == 'win32':
-    exe_suffix = '.exe'
-  else:
-    exe_suffix = ''
-
-  sphinx_build = python_path.parent / f'sphinx-build{exe_suffix}'
-  print(f'Sphinx build executable: {sphinx_build}')
-  assert sphinx_build.exists()
+  print('Check dependencies')
+  run([str(uv), 'sync', '--locked'])
 
   print('Build documentation')
   build_dir = script_dir / '_build'
+  do_clean(clean, build_dir)
   static_dir = script_dir / 'static'
   static_dir.mkdir(exist_ok=True)
-  run([str(sphinx_build),
+  run([str(uv), 'run', 'sphinx-build',
       '-v', # verbose
       '-W', # warnings as errors
       str(script_dir), str(build_dir)])
 
   print('Run spell check')
   spell_dir = script_dir / '_spelling'
-  run([str(sphinx_build), '-b', 'spelling', '-W', str(script_dir),
+  do_clean(clean, spell_dir)
+  run([str(uv), 'run', 'sphinx-build', '-b', 'spelling', '-W', str(script_dir),
       str(spell_dir)])
 
   index_html= build_dir / 'index.html'
