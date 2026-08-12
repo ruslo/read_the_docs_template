@@ -1,7 +1,5 @@
-- ``setup_venv.py`` Setup Python virtual environment with dependencies from ``requirements.txt``
 - ``run_build.py`` Build Sphinx documentation
-- ``run_clean.py`` Remove temporary documentation files
-- ``make_release.py`` Update ``release`` in ``conf.py`` and create Git tag
+- ``make_release.py`` Update version in ``conf.py``/``pyproject.toml`` and create Git tag
 
 Dependencies
 ------------
@@ -10,9 +8,14 @@ Required system packages:
 
 .. code-block:: none
 
-  $ curl -LsSf https://astral.sh/uv/install.sh | sh
   $ apt -y install python3-enchant
   $ apt -y install git
+
+Install ``uv``:
+
+.. code-block:: none
+
+  $ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 Pylint
 ------
@@ -21,12 +24,10 @@ Configuration is in ``pyproject.toml``
 
 .. code-block:: none
 
-  $ pylint setup_venv.py
-  $ pylint run_build.py
-  $ pylint run_clean.py
-  $ pylint make_release.py
-  $ pylint check_format.py
-  $ pylint --const-naming-style=snake_case --allow-global-unused-variables=yes conf.py
+  $ uv run pylint run_build.py
+  $ uv run pylint make_release.py
+  $ uv run pylint check_format.py
+  $ uv run pylint --const-naming-style=snake_case --allow-global-unused-variables=yes conf.py
 
 Ruff
 ----
@@ -35,11 +36,11 @@ Configuration is in ``pyproject.toml``
 
 .. code-block:: none
 
-  $ ruff check --show-files .
+  $ uv run ruff check --show-files .
 
 Sphinx Lint
 -----------
 
 .. code-block:: none
 
-  $ sphinx-lint --ignore _venv/ .
+  $ uv run sphinx-lint --ignore .venv/ .

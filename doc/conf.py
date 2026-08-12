@@ -40,7 +40,9 @@ if not on_rtd:
 
 templates_path = ['templates']
 
-exclude_patterns = ['_build', '_venv', 'readme.rst', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [
+    '_build', '.venv', '_venv', 'readme.rst', 'Thumbs.db', '.DS_Store'
+]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
