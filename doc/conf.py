@@ -20,7 +20,7 @@ project_copyright = f'2025, {author}'
 github_url = 'https://github.com/ruslo/read_the_docs_template'
 
 # The full version, including alpha/beta/rc tags
-release = '1.1.0'
+release = '1.1.1'
 
 # The short X.Y version
 version = packaging.version.parse(release)
