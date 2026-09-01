@@ -601,7 +601,7 @@ dependencies = [
   "packaging",
 
   # https://github.com/pylint-dev/pylint
-  "pylint==4.0.7",
+  "pylint==4.0.8",
 
   # https://github.com/astral-sh/ruff
   "ruff==0.16.5",
