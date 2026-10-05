@@ -604,7 +604,7 @@ dependencies = [
   "pylint==4.1.1",
 
   # https://github.com/astral-sh/ruff
-  "ruff==0.16.9",
+  "ruff==0.16.10",
 
   # https://github.com/sphinx-contrib/sphinx-lint
   "sphinx-lint==1.0.2"
