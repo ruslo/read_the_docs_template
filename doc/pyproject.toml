@@ -595,7 +595,7 @@ dependencies = [
 
   # https://github.com/jbms/sphinx-immaterial
   # https://jbms.github.io/sphinx-immaterial/keys.html#keys-extension-role
-  "sphinx-immaterial[keys]==0.13.9",
+  "sphinx-immaterial[keys]==0.13.11",
 
   # https://packaging.pypa.io
   "packaging",
